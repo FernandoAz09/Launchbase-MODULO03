@@ -9,11 +9,24 @@ server.use(express.static('public')) // express observando a pasta "public", par
 server.set("view engine", "njk") //Configurando a Template Engine //setando o motor de view para NJK (antes como HTML)
 
 nunjucks.configure("views", { //Configurando o caminho "views" , opções em objeto, usando o express com a variável que ele está utilizando
-    express: server
+    express: server,
+    autoescape: false //resolvendo padrão do NUNJUKS de segurar códigos e formatação HTML colocadas nas variáveis
 })
 
 server.get("/", function(req, res) { //adicionando a rota "/" função REQ: requisição RES: resposta do servidor
-    return res.render("about") // respondendo com a renderização do about
+    const about = { //dados que vão servir o about.njk
+        avatar_url:"https://avatars2.githubusercontent.com/u/6643122?s=400&u=1e9e1f04b76fb5374e6a041f5e41dce83f3b5d92&v=4",
+        name: "Mayk Brito",
+        role: "Instrutor - Rocketseat",
+        description:'Programador Full-Stack, focado em trazer o melhor ensino para iniciantes em programação. Colaborador da <a href="https://rocketseat.com.br/" target="_blanc">Rocketseat</a>.',
+        links: [
+            {name:"Github", url:"https://github.com/MaykBrito"},
+            {name:"Twitter", url:"https://twitter.com/maykbrito"},
+            {name:"LinkedIn", url:"https://linkedin.com/in/maykbrito"}
+        ]
+    }
+
+    return res.render("about", { about }) // respondendo com a renderização do about
 })
 
 server.get("/portfolio", function(req, res) { //adicionando a rota "/" função REQ: requisição RES: resposta do servidor
