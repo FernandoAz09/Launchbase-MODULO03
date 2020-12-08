@@ -10,7 +10,8 @@ server.set("view engine", "njk") //Configurando a Template Engine //setando o mo
 
 nunjucks.configure("views", { //Configurando o caminho "views" , opções em objeto, usando o express com a variável que ele está utilizando
     express: server,
-    autoescape: false //resolvendo padrão do NUNJUKS de segurar códigos e formatação HTML colocadas nas variáveis
+    autoescape: false, //resolvendo padrão do NUNJUKS de segurar códigos e formatação HTML colocadas nas variáveis
+    noCache: true //não guardar CACHE para que possa haver mudança nas classes e ID
 })
 
 server.get("/", function(req, res) { //adicionando a rota "/" função REQ: requisição RES: resposta do servidor
@@ -31,6 +32,20 @@ server.get("/", function(req, res) { //adicionando a rota "/" função REQ: requ
 
 server.get("/portfolio", function(req, res) { //adicionando a rota "/" função REQ: requisição RES: resposta do servidor
     return res.render("portfolio", {items: videos}) // respondendo com a renderização do portfolio + os vídeos
+})
+
+server.get("/video", function(req, res) { //adicionando rota /video e a função REQ para alterar o ID de acordo com o card clicado
+    const id = req.query.id  //utilização da QUERY STRING
+
+    const video = videos.find(function(video){ // por ser array no data.js ele usa o metodo find para buscar o id do vídeo
+        return video.id == id
+    })
+
+    if (!video) { // se o ID não estiver no data.js ele retorna a frase
+        return res.send("Video not found!")
+    }
+
+    return res.render("video", { item: video }) // se o ID estiver correto ele renderiza a página video.njk com o ID do card clicado
 })
 
 server.listen(5000, function() { //servidor fica ouvindo a porta 5000 // CALLBACK = função dentro de uma outra função

@@ -5,7 +5,8 @@ module.exports = [
         id:"GykTLqODQuU",
         title:"Formulário Animado JS puro e CSS Animation | Mayk Brito",
         duration:"57 min",
-        price:"Free"
+        price:"Free", 
+        featured: true
     },  
     {
         id:"2alg7MQ6_sI",
@@ -23,7 +24,8 @@ module.exports = [
         id:"ghTrp1x_1As",
         title:"O que é API? REST e RESTful? | Mayk Brito",
         duration:"57 min",
-        price:"Free"
+        price:"Free", 
+        featured: true
     },
     {
         id:"c7P03kkrEG8",
@@ -35,6 +37,7 @@ module.exports = [
         id:"rAzHvYnQ8DY",
         title:"Array: Higher Order Functions | Mayk Brito",
         duration:"57 min",
-        price:"Free"
+        price:"Free", 
+        featured: true
     }
 ]

@@ -5,7 +5,7 @@
 
 -> Formatação de texto e imagens: HTML, CSS.
 
-->Servidor via Javascript, aplicação do Nodemon e Nunjucks.
+->Servidor via Javascript, aplicação do Express, Nodemon e Nunjucks.
  
 -> Objetivo: 
 

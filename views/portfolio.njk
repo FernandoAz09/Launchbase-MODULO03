@@ -17,36 +17,27 @@
         <section class="cards">
 
             {% for item in items %}  {# Estrutura de repetição para substituição dos ITEMS vindos do data.js #}
-            <div class="card" id="{{item.id}}">
-                <div class="card__image-container">
-                    <img src="http://i3.ytimg.com/vi/{{item.id}}/maxresdefault.jpg" alt="Imagem de {{item.title}}"/>
+                <div class="card" id="{{item.id}}">
+                    <div class="card__image-container {{ 'featured-wrapper' if item.featured }}">  {# se tiver o ITEM.FEATURED, adicione a classe FEATURED-WRAPPER #}
+                        <img src="http://i3.ytimg.com/vi/{{item.id}}/maxresdefault.jpg" alt="Imagem de {{item.title}}"/>
+                        {% if item.featured %}  {# NUNJUKS também faz IF #}
+                            <div class="featured">Featured</div>  {# Só vai aparecer nos cards em que tem o featured no data.js  #}
+                         {% endif %} {# Fechamento do IF #}
+                    </div>
+                    <div class="card__content">
+                        {{item.title}}
+                    </div>
+                    <div class="card__info">
+                        <p>{{item.duration}}</p>
+                        <p class="card__price">{{item.price}}</p>
+                    </div>
                 </div>
-                <div class="card__content">
-                    {{item.title}}
-                </div>
-                <div class="card__info">
-                    <p>{{item.duration}}</p>
-                    <p class="card__price">{{item.price}}</p>
-                </div>
-            </div>
 
             {% endfor %} {# Fechamento do FOR , da repetição #}
             
         </section>
 
-        <div class="modal-overlay">
-            <div class="modal">
-                <a class="close-modal">
-                    <i class="material-icons">close</i>
-                </a>
-
-                <div class="modal-content">
-                    <iframe src="" frameborder="0"></iframe>
-                </div>
-            </div>
-        </div>
-        
-        <script src="scripts.js"></script>
+        <script src="/scripts.js"></script>
 
 
 {% endblock %}
